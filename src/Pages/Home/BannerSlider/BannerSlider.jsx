@@ -13,6 +13,7 @@ const BannerSlider = () => {
             autoPlay={true}
             infiniteLoop={true}
             transitionTime={1000}
+            className="text-center"
         >
             <div>
                 <img src={img1} />
