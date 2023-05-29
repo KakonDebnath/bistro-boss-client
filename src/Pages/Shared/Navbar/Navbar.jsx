@@ -14,8 +14,12 @@ const Navbar = () => {
         <li><Link to="/menu">Our Menu</Link></li>
         <li><Link to="/order/salad">Order Food</Link></li>
         <li><Link to="/contactUs">Contact Us</Link></li>
+        {
+            user && <li><Link to="/dashboard/userHome">Dashboard</Link></li>
+        }
+
         <li>
-            <Link to="/contactUs">
+            <Link to="/dashboard/myCart">
                 <button className="flex items-center gap-1">
                     <FaCartArrowDown size={24}></FaCartArrowDown>
                     <div className="badge badge-warning">{cart?.length || 0}</div>
