@@ -18,8 +18,6 @@ const OrderTab = ({ items }) => {
         <Swiper
             slidesPerView={3}
             spaceBetween={30}
-            // centeredSlides={false}
-            // slidesPerGroupSkip={2}
             pagination={pagination}
             modules={[Pagination]}
             className="mySwiper"
@@ -27,7 +25,7 @@ const OrderTab = ({ items }) => {
             <div>
                 {
                     items?.map(item => <SwiperSlide key={item?._id}>
-                        <FoodCard items={item}></FoodCard>
+                        <FoodCard item={item}></FoodCard>
                     </SwiperSlide>)
                 }
             </div>

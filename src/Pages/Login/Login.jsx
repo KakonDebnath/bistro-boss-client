@@ -86,7 +86,7 @@ const Login = () => {
                                 <button onClick={handleValidateCaptcha} className="btn btn-outline btn-xs mt-3">Validate</button>
                             </div>
                             <div className="form-control mt-6">
-                                <button disabled={disabled} type="submit" className="btn btn-primary">Login</button>
+                                <button disabled={false} type="submit" className="btn btn-primary">Login</button>
                             </div>
                             <div>
                                 <p className="text-center text-yellow-600">New hare? <Link to="/signUp"><span className="hover:font-bold">Create A New Account</span></Link></p>

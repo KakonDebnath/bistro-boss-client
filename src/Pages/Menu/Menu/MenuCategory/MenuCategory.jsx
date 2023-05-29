@@ -3,7 +3,7 @@ import MenuItem from "../../../Shared/Menuitem/MenuItem";
 import Cover from "../../../Shared/Cover/Cover";
 
 const MenuCategory = ({ items, coverImg, coverTitle, coverDetails, button }) => {
-    console.log(items);
+    // console.log(items);
     return (
         <div>
             {coverImg &&
