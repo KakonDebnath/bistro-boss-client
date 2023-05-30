@@ -1,13 +1,19 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { FaCalendarAlt, FaCalendarCheck, FaHouseUser, FaShoppingCart, FaWallet } from "react-icons/fa";
 import { GrMail, GrMenu, GrShop } from "react-icons/gr";
+import useCart from "../hooks/useCart";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
+    const [cart] = useCart()
     return (
         <>
+            <Helmet>
+                <title>Bistro : Dashboard</title>
+            </Helmet>
             <div className="drawer drawer-mobile">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col items-center justify-center">
+                <div className="drawer-content ">
                     {/* <!-- Page content here --> */}
                     <Outlet></Outlet>
                     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
@@ -15,54 +21,55 @@ const Dashboard = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 bg-[#D1A054] text-base-content">
+                    <ul className="menu p-4 w-72 bg-[#D1A054] text-base-content">
                         {/* <!-- Sidebar content here --> */}
-                        <h2>Bistro Boss Restaurant</h2>
+                        <h2 className="text-center text-3xl text-white mb-12">Bistro Boss Restaurant</h2>
                         <li>
                             <NavLink
                                 to="/dashboard/userHome"
                                 className={({ isActive }) =>
-                                    isActive ? "text-white" : ""
+                                    isActive ? "active" : ""
                                 }
                             >
-                               <FaHouseUser></FaHouseUser> User Home
+                                <FaHouseUser></FaHouseUser> User Home
                             </NavLink>
                         </li>
                         <li>
                             <NavLink
                                 to="/dashboard/reservation"
                                 className={({ isActive }) =>
-                                    isActive ? "text-white" : ""
+                                    isActive ? "active" : ""
                                 }
                             >
-                               <FaCalendarAlt></FaCalendarAlt> Reservation
+                                <FaCalendarAlt></FaCalendarAlt> Reservation
                             </NavLink>
                         </li>
                         <li>
                             <NavLink
                                 to="/dashboard/paymentHistory"
                                 className={({ isActive }) =>
-                                    isActive ? "text-white" : ""
+                                    isActive ? "active" : ""
                                 }
                             >
-                              <FaWallet></FaWallet>  Payment history
+                                <FaWallet></FaWallet>  Payment history
                             </NavLink>
                         </li>
                         <li>
                             <NavLink
                                 to="/dashboard/myCart"
                                 className={({ isActive }) =>
-                                    isActive ? "text-white" : ""
+                                    isActive ? "active" : ""
                                 }
                             >
-                              <FaShoppingCart></FaShoppingCart>  My Cart
+                                <FaShoppingCart></FaShoppingCart>  My Cart
+                                <span className="badge">+{cart?.length || 0}</span>
                             </NavLink>
                         </li>
                         <li>
                             <NavLink
                                 to="/dashboard/addReview"
                                 className={({ isActive }) =>
-                                    isActive ? "text-white" : ""
+                                    isActive ? "active" : ""
                                 }
                             >
                                 Add Review
@@ -72,10 +79,10 @@ const Dashboard = () => {
                             <NavLink
                                 to="/dashboard/myBooking"
                                 className={({ isActive }) =>
-                                    isActive ? "text-white" : ""
+                                    isActive ? "active" : ""
                                 }
                             >
-                               <FaCalendarCheck></FaCalendarCheck> My Booking
+                                <FaCalendarCheck></FaCalendarCheck> My Booking
                             </NavLink>
                         </li>
                         <div className="divider"></div>
@@ -83,40 +90,40 @@ const Dashboard = () => {
                             <NavLink
                                 to="/"
                                 className={({ isActive }) =>
-                                    isActive ? "text-white" : ""
+                                    isActive ? "active" : ""
                                 }
                             >
-                              <FaHouseUser></FaHouseUser> Home
+                                <FaHouseUser></FaHouseUser> Home
                             </NavLink>
                         </li>
                         <li>
                             <NavLink
                                 to="/menu"
                                 className={({ isActive }) =>
-                                    isActive ? "text-white" : ""
+                                    isActive ? "active" : ""
                                 }
                             >
-                             <GrMenu></GrMenu>  Menu
+                                <GrMenu></GrMenu>  Menu
                             </NavLink>
                         </li>
                         <li>
                             <NavLink
                                 to="/order/salad"
                                 className={({ isActive }) =>
-                                    isActive ? "text-white" : ""
+                                    isActive ? "active" : ""
                                 }
                             >
-                              <GrShop></GrShop> Order
+                                <GrShop></GrShop> Order
                             </NavLink>
                         </li>
                         <li>
                             <NavLink
                                 to="/contactUs"
                                 className={({ isActive }) =>
-                                    isActive ? "text-white" : ""
+                                    isActive ? "active" : ""
                                 }
                             >
-                              <GrMail></GrMail> Contact Us
+                                <GrMail></GrMail> Contact Us
                             </NavLink>
                         </li>
                     </ul>

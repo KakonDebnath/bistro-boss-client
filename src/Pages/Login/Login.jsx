@@ -3,6 +3,7 @@ import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 
 
@@ -12,6 +13,7 @@ const Login = () => {
     const {user, logInUser} = useContext(AuthContext);
     const location = useLocation()
     const navigate = useNavigate();
+    let from = location.state?.from?.pathname || "/";
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -42,8 +44,14 @@ const Login = () => {
         logInUser(email, password)
         .then((result)=>{
             // const currentUser = result.user;
-            navigate('/');
-            alert("Successfully Logged in")
+            navigate(from, { replace: true });
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Login Successfully',
+                showConfirmButton: false,
+                timer: 1500
+              })
         })
         .catch((err)=>{
             console.log(err.message);

@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+.drawer-side .menu a{
+    transition: all;
+    transition-duration: 0.5s;
+}
+.drawer-side .menu a.active{
+    color: black;
+    background-color: white;
+    font-size: 18px;
+}

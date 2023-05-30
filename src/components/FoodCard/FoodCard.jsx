@@ -11,7 +11,7 @@ const FoodCard = ({ item }) => {
     const navigate = useNavigate()
     const { image, name, recipe, price, _id } = item;
     const handleAddToCart = (item) => {
-        console.log(item);
+        // console.log(item);
         if (user && user.email) {
             const cartItem = {menuItemId: _id, name, image, price, email: user.email}
             fetch('http://localhost:5000/carts', {
@@ -26,14 +26,12 @@ const FoodCard = ({ item }) => {
                     if(data.insertedId) {
                         refetch();
                         Swal.fire({
-                            position: 'top-middle',
+                            position: 'center',
                             icon: 'success',
                             title: 'Your food successfully added',
                             showConfirmButton: false,
                             timer: 1500
                         })
-            
-                        
                     }
                 })
                 .catch(err => {
