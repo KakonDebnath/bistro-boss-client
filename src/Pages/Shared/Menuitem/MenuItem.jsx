@@ -1,6 +1,3 @@
-import { useContext } from "react";
-import { AuthContext } from "../../../Provider/AuthProvider";
-
 
 const MenuItem = ({ item }) => {
     const { name, image, price, recipe } = item;

@@ -8,9 +8,11 @@ import ContactUs from "../Pages/ContactUs/ContactUs";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/Login/SignUp";
 import Dashboard from "../Layout/Dashboard";
-import MyCart from "../Pages/Dashboard/MyCart/MyCart";
-import UserHome from "../Pages/Dashboard/UserHome/UserHome";
+import MyCart from "../Pages/Dashboard/User/MyCart/MyCart";
+import UserHome from "../Pages/Dashboard/User/UserHome/UserHome";
 import PrivateRoute from "./PrivateRoute";
+import AdminHome from "../Pages/Dashboard/Admin/AdminHome/AdminHome";
+import AllUsers from "../Pages/Dashboard/Admin/AllUsers/Users";
 
 const router = createBrowserRouter([
     {
@@ -49,13 +51,23 @@ const router = createBrowserRouter([
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children:[
             {
-                path: "myCart",
-                element: <PrivateRoute><MyCart></MyCart></PrivateRoute> 
+                path: "adminHome",
+                element: <PrivateRoute><AdminHome></AdminHome></PrivateRoute> 
+                
+            },
+            {
+                path: "users",
+                element: <PrivateRoute><AllUsers></AllUsers></PrivateRoute> 
                 
             },
             {
                 path: "userHome",
                 element: <PrivateRoute><UserHome></UserHome></PrivateRoute>
+            },
+            {
+                path: "myCart",
+                element: <PrivateRoute><MyCart></MyCart></PrivateRoute> 
+                
             },
         ]
     }

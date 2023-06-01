@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from "../firebase/firebase.config";
+import axios from "axios";
 const auth = getAuth(app);
 
 export const AuthContext = createContext(null);
@@ -10,14 +11,24 @@ const AuthProvider = ({ children }) => {
     const [successMsg, setSuccessMsg] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
 
+    const googleProvider = new GoogleAuthProvider();
+
     // Create User
     const createNewUser = (email, password) => {
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
     // Sign in user
 
     const logInUser = (email, password) => {
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
+    }
+
+    // Sign in with google pop up
+    const googleSignIn = () => {
+        setLoading(true);
+        return signInWithPopup(auth, googleProvider);
     }
     // Sign out user
     const logOutUser = () => {
@@ -26,22 +37,29 @@ const AuthProvider = ({ children }) => {
     }
     // update profile
     const updateUserProfile = (name, photo) => {
-        updateProfile(auth.currentUser, {
+        return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photo
-        }).then(() => {
-
-            console.log("Profile updated!");
-        }).catch((error) => {
-            // An error occurred
-            // ...
-            errorMsg(error.message);
         });
     }
+
     // observer for user is logged in
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
             setLoading(false);
+
+            // jwt token get adn set
+            if (currentUser && currentUser.email) {
+                axios.post("http://localhost:5000/jwt", { email: currentUser?.email }).then(data => {
+                    // console.log(data.data.token);
+                    localStorage.setItem('access_token', data.data.token);
+                    setLoading(false);
+                })
+            } else {
+                setUser(null);
+                localStorage.removeItem('access_token');
+            }
+
         });
         return () => {
             return unsubscribe();
@@ -52,6 +70,7 @@ const AuthProvider = ({ children }) => {
         loading,
         createNewUser,
         logInUser,
+        googleSignIn,
         logOutUser,
         updateUserProfile,
         successMsg,

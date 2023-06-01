@@ -9,11 +9,11 @@ const FoodCard = ({ item }) => {
     const { user } = useContext(AuthContext);
     const [, refetch] = useCart()
     const navigate = useNavigate()
-    const { image, name, recipe, price, _id } = item;
+    const {image, name, recipe, price} = item;
     const handleAddToCart = (item) => {
         // console.log(item);
         if (user && user.email) {
-            const cartItem = {menuItemId: _id, name, image, price, email: user.email}
+            const cartItem = {menuItemId: item._id, name: item.name, image: item.image, price: item.price, email: user.email}
             fetch('http://localhost:5000/carts', {
                 method: 'POST',
                 headers: {

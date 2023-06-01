@@ -1,6 +1,6 @@
 import { FaTrashAlt } from "react-icons/fa";
-import SectionTitle from "../../../components/SectionTitle/SectionTitle";
-import useCart from "../../../hooks/useCart";
+import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
+import useCart from "../../../../hooks/useCart";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 
@@ -8,8 +8,7 @@ const MyCart = () => {
     const [cart, refetch] = useCart()
     // console.log(cart);
     const totalPrice = cart?.reduce((sum, item) => item.price + sum, 0);
-
-
+    
     const handleDelete = (id) => {
         // console.log(id);
         Swal.fire({
