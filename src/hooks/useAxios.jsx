@@ -1,9 +1,9 @@
-import { useContext, useEffect } from "react";
-import { AuthContext } from "../Provider/AuthProvider";
+import { useEffect } from "react";
 import axios from "axios";
+import useAuth from "./useAuth";
 
 const useAxios = () => {
-    const { logOutUser } = useContext(AuthContext);
+    const { logOutUser } = useAuth();
 
     const AXIOS = axios.create({
         baseURL: "http://localhost:5000"
@@ -35,7 +35,7 @@ const useAxios = () => {
         });
     }, [logOutUser, AXIOS]);
 
-    return AXIOS;
+    return [AXIOS];
 }
 
 export default useAxios;

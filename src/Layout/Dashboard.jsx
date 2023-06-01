@@ -4,12 +4,14 @@ import {TfiMenuAlt} from "react-icons/tfi"
 import { GrMail, GrMenu, GrShop } from "react-icons/gr";
 import useCart from "../hooks/useCart";
 import { Helmet } from "react-helmet-async";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
     const [cart] = useCart()
 
     // TODO: Is admin load from database
-    const isAdmin = true;
+    // const isAdmin = true;
+    const [isAdmin] = useAdmin();
     return (
         <>
             <Helmet>

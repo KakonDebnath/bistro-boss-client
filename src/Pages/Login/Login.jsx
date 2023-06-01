@@ -1,16 +1,16 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
-import { useContext, useEffect, useRef, useState } from "react";
-import { AuthContext } from "../../Provider/AuthProvider";
+import {  useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 
 
 const Login = () => {
     const [disabled, setDisabled] = useState(true);
     const captchaRef = useRef();
-    const { user, logInUser, googleSignIn } = useContext(AuthContext);
+    const { user, logInUser, googleSignIn } = useAuth()
     const location = useLocation()
     const navigate = useNavigate();
     let from = location.state?.from?.pathname || "/";
@@ -123,7 +123,7 @@ const Login = () => {
                                 <button onClick={handleValidateCaptcha} className="btn btn-outline btn-xs mt-3">Validate</button>
                             </div>
                             <div className="form-control mt-6">
-                                <button disabled={false} type="submit" className="btn btn-primary">Login</button>
+                                <button disabled={disabled} type="submit" className="btn btn-primary">Login</button>
                             </div>
                             <div>
                                 <p className="text-center text-yellow-600">New hare? <Link to="/signUp"><span className="hover:font-bold">Create A New Account</span></Link></p>

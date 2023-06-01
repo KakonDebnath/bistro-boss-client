@@ -12,7 +12,7 @@ import MyCart from "../Pages/Dashboard/User/MyCart/MyCart";
 import UserHome from "../Pages/Dashboard/User/UserHome/UserHome";
 import PrivateRoute from "./PrivateRoute";
 import AdminHome from "../Pages/Dashboard/Admin/AdminHome/AdminHome";
-import AllUsers from "../Pages/Dashboard/Admin/AllUsers/Users";
+import AllUsers from "../Pages/Dashboard/Admin/AllUsers/AllUsers";
 
 const router = createBrowserRouter([
     {

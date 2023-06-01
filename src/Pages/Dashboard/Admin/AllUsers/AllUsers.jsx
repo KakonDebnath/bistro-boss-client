@@ -3,12 +3,14 @@ import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
 import { FaTrashAlt, FaUserAlt, FaUserCog } from "react-icons/fa";
 import Swal from "sweetalert2";
+import useAxios from "../../../../hooks/useAxios";
 
 
 const AllUsers = () => {
+    const [AXIOS] = useAxios();
     const { data: users = [], refetch } = useQuery(['users'], async () => {
-        const res = await fetch("http://localhost:5000/users");
-        return res.json();
+        const res = await AXIOS.get("/users");
+        return res.data;
     })
 
     // Update user roll
@@ -76,7 +78,7 @@ const AllUsers = () => {
                                             <th>{index + 1}</th>
                                             <td>{user?.name}</td>
                                             <td>{user?.email}</td>
-                                            <td>{user?.roll === "admin" ? <button onClick={()=>handleMakeAdmin(user)}className="text-error"><FaUserCog size={24}></FaUserCog></button> : <button onClick={()=>handleMakeAdmin(user)}className="text-warning"><FaUserAlt size={24}></FaUserAlt></button>}</td>
+                                            <td>{user?.role === "admin" ? <button onClick={()=>handleMakeAdmin(user)}className="text-error"><FaUserCog size={24}></FaUserCog></button> : <button onClick={()=>handleMakeAdmin(user)}className="text-warning"><FaUserAlt size={24}></FaUserAlt></button>}</td>
                                             <th>
                                                 <button onClick={() => handleDeleteUser(user)} className="btn btn-error text-white"><FaTrashAlt></FaTrashAlt></button>
                                             </th>

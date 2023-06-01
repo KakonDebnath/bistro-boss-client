@@ -2,7 +2,7 @@
 const UserHome = () => {
     return (
         <div>
-            Dashboard Home
+            Dashboard User Home
         </div>
     );
 };
