@@ -60,10 +60,10 @@ const Login = () => {
 
     // google sign in
     const handleGoogleSignIn = () => {
-        console.log("Clicked");
+        // console.log("Clicked");
         googleSignIn()
             .then(result => {
-                console.log(result.user);
+                // console.log(result.user);
                 const savedUser = {
                     name: result.user.displayName, email: result.user.email
                 }

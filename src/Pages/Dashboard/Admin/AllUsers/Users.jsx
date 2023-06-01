@@ -14,7 +14,7 @@ const AllUsers = () => {
     // Update user roll
     const handleMakeAdmin = (user) =>{
         console.log(user);
-        fetch(`http://localhost:5000/admin/users/${user?._id}`, {
+        fetch(`http://localhost:5000/users/admin/${user?._id}`, {
             method: 'PATCH',
         }).then(res => res.json())
             .then(data => {
@@ -33,7 +33,7 @@ const AllUsers = () => {
     // Handle delete users from database
     const handleDeleteUser = (user) => {
         // console.log(user);
-        fetch(`http://localhost:5000/admin/users/${user?._id}`, {
+        fetch(`http://localhost:5000/users/admin/${user?._id}`, {
             method: 'DELETE',
         }).then(res => res.json())
             .then(data => {
