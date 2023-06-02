@@ -1,0 +1,10 @@
+.addItemBtn{
+    transition: all 1s ease-in-out;
+    background: #000;
+    /* background: linear-gradient(90deg, #835D23 0%, #B58130 100%); */
+}
+.addItemBtn:hover{
+    /* background: linear-gradient(90deg, #B58130 0%, #835D23 100%); */
+    background:#fff;
+    color: #000;
+}

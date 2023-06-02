@@ -45,7 +45,7 @@ const Dashboard = () => {
                                 </li>
                                 <li>
                                     <NavLink
-                                        to="/dashboard/reservation"
+                                        to="/dashboard/addItem"
                                         className={({ isActive }) =>
                                             isActive ? "active" : ""
                                         }

@@ -13,6 +13,8 @@ import UserHome from "../Pages/Dashboard/User/UserHome/UserHome";
 import PrivateRoute from "./PrivateRoute";
 import AdminHome from "../Pages/Dashboard/Admin/AdminHome/AdminHome";
 import AllUsers from "../Pages/Dashboard/Admin/AllUsers/AllUsers";
+import AddItem from "../Pages/Dashboard/Admin/AddItem/AddItem";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
     {
@@ -52,12 +54,17 @@ const router = createBrowserRouter([
         children:[
             {
                 path: "adminHome",
-                element: <PrivateRoute><AdminHome></AdminHome></PrivateRoute> 
+                element: <AdminRoute><AdminHome></AdminHome></AdminRoute> 
+                
+            },
+            {
+                path: "addItem",
+                element: <AdminRoute><AddItem></AddItem></AdminRoute> 
                 
             },
             {
                 path: "users",
-                element: <PrivateRoute><AllUsers></AllUsers></PrivateRoute> 
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute> 
                 
             },
             {
