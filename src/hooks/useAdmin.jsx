@@ -8,7 +8,7 @@ const useAdmin = () => {
     const {data: isAdmin, isLoading: isAdminLoading} = useQuery({
         queryKey: ['isAdmin', user?.email],
         queryFn: async ()=>{
-            const result = await AXIOS.get(`users/admin/${user?.email}`);
+            const result = await AXIOS.get(`/users/admin/${user?.email}`);
             // console.log(result.data.admin);
             return result.data.admin;
         }
