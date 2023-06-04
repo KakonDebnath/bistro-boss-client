@@ -2,7 +2,7 @@
 const AdminHome = () => {
     return (
         <div>
-            Dashboard Admin Home
+            ADMin home
         </div>
     );
 };

@@ -55,7 +55,7 @@ const Dashboard = () => {
                                 </li>
                                 <li>
                                     <NavLink
-                                        to="/dashboard/paymentHistory"
+                                        to="/dashboard/manageItem"
                                         className={({ isActive }) =>
                                             isActive ? "active" : ""
                                         }

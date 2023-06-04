@@ -3,6 +3,7 @@ import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
 import useCart from "../../../../hooks/useCart";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 
 const MyCart = () => {
     const [cart, refetch] = useCart()
@@ -49,7 +50,7 @@ const MyCart = () => {
                     <div className="flex justify-around items-center">
                         <h2 className="uppercase font-bold">total order: {cart?.length}</h2>
                         <h2 className="uppercase font-bold">total price $ {totalPrice.toFixed(2)}</h2>
-                        <button className="btn btn-warning">pay</button>
+                        <Link to="/dashboard/payment"> <button className="btn btn-warning">pay</button></Link>
                     </div>
                     <div className="mt-10">
                         <div className="overflow-x-auto w-full">

@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
-import {FaCartArrowDown} from "react-icons/fa"
+import { FaCartArrowDown } from "react-icons/fa"
 import useCart from "../../../hooks/useCart";
 import useAuth from "../../../hooks/useAuth";
+import useAdmin from "../../../hooks/useAdmin";
 
 
 const Navbar = () => {
     const { user, logOutUser } = useAuth();
+    const [isAdmin] = useAdmin()
     const [cart] = useCart();
     // console.log(cart); 
     const navOptions = <>
@@ -14,17 +16,18 @@ const Navbar = () => {
         <li><Link to="/order/salad">Order Food</Link></li>
         <li><Link to="/contactUs">Contact Us</Link></li>
         {
-            user && <li><Link to="/dashboard">Dashboard</Link></li>
+            user && <li><Link to="/dashboard/">Dashboard</Link></li>
         }
-
-        <li>
-            <Link to="/dashboard/myCart">
-                <button className="flex items-center gap-1">
-                    <FaCartArrowDown size={24}></FaCartArrowDown>
-                    <div className="badge badge-warning">{cart?.length || 0}</div>
-                </button>
-            </Link>
-        </li>
+        {
+            !isAdmin && <li>
+                <Link to="/dashboard/myCart">
+                    <button className="flex items-center gap-1">
+                        <FaCartArrowDown size={24}></FaCartArrowDown>
+                        <div className="badge badge-warning">{cart?.length || 0}</div>
+                    </button>
+                </Link>
+            </li>
+        }
     </>
     return (
         <>
