@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import axios from "axios";
 import useAuth from "./useAuth";
+import { useNavigate } from "react-router-dom";
 
 const useAxios = () => {
     const { logOutUser } = useAuth();
+    const navigate = useNavigate();
 
     const AXIOS = axios.create({
         baseURL: "http://localhost:5000"
@@ -30,10 +32,11 @@ const useAxios = () => {
 
             if (error.response && (error.response.status === 401 || error.response.status === 403)) {
                 // await logOutUser();
+                // navigate("/login");
             }
             return Promise.reject(error);
         });
-    }, [logOutUser, AXIOS]);
+    }, [logOutUser, AXIOS, navigate]);
 
     return [AXIOS];
 }

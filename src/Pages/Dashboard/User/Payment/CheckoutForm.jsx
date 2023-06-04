@@ -1,11 +1,13 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useState } from "react";
 
-const CheckoutForm = () => {
+const CheckoutForm = ({price}) => {
+    console.log(price);
     const [cartError, setCartError] = useState('');
     const stripe = useStripe();
     const elements = useElements();
     const handleSubmit = async (event) => {
+        setCartError("");
         // Block native form submission.
         event.preventDefault()
         if (!stripe || !elements) {

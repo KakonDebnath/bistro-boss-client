@@ -47,17 +47,17 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
             setLoading(false);
-
             // jwt token get adn set
             if (currentUser && currentUser.email) {
                 axios.post("http://localhost:5000/jwt", { email: currentUser?.email }).then(data => {
                     // console.log(data.data.token);
                     localStorage.setItem('access_token', data.data.token);
-                    setLoading(false);
+                    // setLoading(false);
                 })
             } else {
                 setUser(null);
                 localStorage.removeItem('access_token');
+                setLoading(true);
             }
 
         });
@@ -68,6 +68,7 @@ const AuthProvider = ({ children }) => {
     const authInfo = {
         user,
         loading,
+        setLoading,
         createNewUser,
         logInUser,
         googleSignIn,

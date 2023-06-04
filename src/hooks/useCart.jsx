@@ -3,11 +3,12 @@ import useAxios from './useAxios';
 import useAuth from './useAuth';
 
 const useCart = () => {
-    const {user} = useAuth()
+    const {user, loading} = useAuth()
     const [AXIOS] = useAxios();
     // const token = localStorage.getItem('access_token');
     const { refetch, isLoading, data:cart = []} = useQuery({
         queryKey: ['cart', user?.email],
+        enabled: !loading,
         // queryFn: async () => {
         //     const response = await fetch(`http://localhost:5000/carts?email=${user?.email}`,{
         //         headers: {
